@@ -3,173 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Forever</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <title>Reasons Why</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --accent: #ff4d6d;
-            --bg-dark: #0a0a0a;
-        }
-
-        body {
-            margin: 0;
-            background-color: var(--bg-dark);
-            color: white;
-            font-family: 'Quicksand', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        /* Consistent Space Background */
-        .stars {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-            z-index: -1;
-        }
-
-        .container {
-            padding: 20px;
-            z-index: 10;
-            animation: fadeInPage 1.5s ease-out; /* Smooth entrance */
-        }
-
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
-            color: var(--accent);
-            margin-bottom: 5px;
-        }
-
-        .infinity {
-            font-size: 70px;
-            color: var(--accent);
-            margin: 10px 0;
-            display: inline-block;
-            animation: pulseGlow 3s infinite ease-in-out;
-        }
-
-        @keyframes pulseGlow {
-            0% { text-shadow: 0 0 10px var(--accent); transform: scale(1); }
-            50% { text-shadow: 0 0 25px #ff758f, 0 0 45px #ff758f; transform: scale(1.1); }
-            100% { text-shadow: 0 0 10px var(--accent); transform: scale(1); }
-        }
-
-        .timer-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-top: 25px;
-        }
-
-        .time-box {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            padding: 15px 10px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 77, 109, 0.2);
-        }
-
-        .time-value {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #ff758f;
-            display: block;
-        }
-
-        .time-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            opacity: 0.6;
-        }
-
-        /* Navigation to the Final Slider */
-        .next-step-btn {
-            margin-top: 40px;
-            display: inline-block;
-            color: white;
-            text-decoration: none;
-            background: rgba(255, 77, 109, 0.1);
-            border: 1px solid var(--accent);
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            letter-spacing: 1px;
-        }
-
-        .next-step-btn:hover {
-            background: var(--accent);
-            box-shadow: 0 0 20px var(--accent);
-        }
+        body { margin: 0; background: #0a0a0a; font-family: 'Quicksand', sans-serif; color: white; overflow-x: hidden; }
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%); z-index: -1; }
+        .header { text-align: center; padding: 40px 20px; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3rem; color: #ff4d6d; }
+        .scroller { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px; gap: 20px; height: 65vh; align-items: center; }
+        .scroller::-webkit-scrollbar { display: none; }
+        .reason-card { min-width: 85vw; height: 55vh; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border-radius: 40px; scroll-snap-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; box-sizing: border-box; border: 1px solid rgba(255, 255, 255, 0.2); }
+        .reason-card span { font-size: 50px; margin-bottom: 15px; }
+        .reason-card h2 { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #ff4d6d; margin: 10px 0; }
+        .reason-card p { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; }
+        .portal-btn { background: #ff4d6d; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; margin-top: 20px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 70% { transform: scale(1.05); } 100% { transform: scale(1); } }
     </style>
 </head>
 <body>
-
     <div class="stars"></div>
-
-    <div class="container">
-        <h1>Our Story...</h1>
-        <p style="opacity: 0.8; letter-spacing: 1px;">Started Jan 22, 2025</p>
-        
-        <span class="infinity">∞</span>
-
-        <div class="timer-grid">
-            <div class="time-box"><span class="time-value" id="years">0</span><span class="time-label">Years</span></div>
-            <div class="time-box"><span class="time-value" id="months">0</span><span class="time-label">Months</span></div>
-            <div class="time-box"><span class="time-value" id="days">0</span><span class="time-label">Days</span></div>
-            <div class="time-box"><span class="time-value" id="hours">0</span><span class="time-label">Hours</span></div>
-            <div class="time-box"><span class="time-value" id="minutes">0</span><span class="time-label">Min</span></div>
-            <div class="time-box"><span class="time-value" id="seconds">0</span><span class="time-label">Sec</span></div>
-        </div>
-
-        <a href="love-meter.html" class="next-step-btn">The Final Secret ➔</a>
+    <div class="header"><h1>To My Everything...</h1></div>
+    <div class="scroller">
+        <div class="reason-card"><span>✨</span><h2>Your Eyes</h2><p>"I could get lost in your eyes for a lifetime..."</p></div>
+        <div class="reason-card"><span>🌹</span><h2>Your Smile</h2><p>"Your smile is the only light I need..."</p></div>
+        <div class="reason-card"><span>💫</span><h2>Your Hair</h2><p>"Even the wind is jealous of how perfectly your hair falls..."</p></div>
+        <div class="reason-card"><span>🎶</span><h2>Your Laugh</h2><p>"If happiness had a sound, it would be your laugh..."</p></div>
+        <div class="reason-card"><span>⌛</span><h2>Our Forever</h2><p>Counting every second since Jan 22, 2025.</p><a href="timer.html" class="portal-btn">Enter Our Eternity</a></div>
     </div>
-
-    <script>
-        // Use your specific start date
-        const startDate = new Date("January 22, 2025 00:00:00").getTime();
-
-        function updateTimer() {
-            const now = new Date().getTime();
-            const diff = now - startDate;
-
-            const start = new Date("January 22, 2025");
-            const current = new Date();
-            
-            let years = current.getFullYear() - start.getFullYear();
-            let months = current.getMonth() - start.getMonth();
-            let days = current.getDate() - start.getDate();
-
-            if (days < 0) {
-                months -= 1;
-                days += new Date(current.getFullYear(), current.getMonth(), 0).getDate();
-            }
-            if (months < 0) {
-                years -= 1;
-                months += 12;
-            }
-
-            document.getElementById('years').innerText = years;
-            document.getElementById('months').innerText = months;
-            document.getElementById('days').innerText = days;
-            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
-        }
-
-        setInterval(updateTimer, 1000);
-        updateTimer();
-    </script>
 </body>
 </html>

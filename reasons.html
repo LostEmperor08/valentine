@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reasons Why</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;600&display=swap" rel="stylesheet">
+    <title>Our Forever</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background: #0a0a0a; font-family: 'Quicksand', sans-serif; color: white; overflow-x: hidden; }
-        
-        /* Cinematic Star Background */
+        :root {
+            --accent: #ff4d6d;
+            --bg-dark: #0a0a0a;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Consistent Space Background */
         .stars {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -16,115 +32,144 @@
             z-index: -1;
         }
 
-        .header { text-align: center; padding: 40px 20px; animation: fadeIn 2s; }
-        h1 { font-family: 'Dancing Script', cursive; font-size: 3rem; color: #ff4d6d; }
-        
-        .scroller {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
+        .container {
             padding: 20px;
-            gap: 20px;
-            height: 70vh;
-            align-items: center;
-        }
-        
-        .scroller::-webkit-scrollbar { display: none; }
-
-        .reason-card {
-            min-width: 85vw;
-            height: 60vh;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: 40px;
-            scroll-snap-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            text-align: center;
-            box-sizing: border-box;
+            z-index: 10;
+            animation: fadeInPage 1.5s ease-out; /* Smooth entrance */
         }
 
-        .reason-card span { font-size: 60px; margin-bottom: 20px; }
-        .reason-card h2 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; margin: 10px 0; color: #ff4d6d; }
-        .reason-card p { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; }
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* The Final Button */
-        .portal-btn {
-            background: #ff4d6d;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .infinity {
+            font-size: 70px;
+            color: var(--accent);
+            margin: 10px 0;
+            display: inline-block;
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 10px var(--accent); transform: scale(1); }
+            50% { text-shadow: 0 0 25px #ff758f, 0 0 45px #ff758f; transform: scale(1.1); }
+            100% { text-shadow: 0 0 10px var(--accent); transform: scale(1); }
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 15px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 77, 109, 0.2);
+        }
+
+        .time-value {
+            font-size: 1.6rem;
             font-weight: 600;
-            margin-top: 20px;
-            box-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
-            animation: pulse 2s infinite;
+            color: #ff758f;
+            display: block;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 77, 109, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 109, 0); }
+        .time-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.6;
         }
 
-        .footer-hint { text-align: center; opacity: 0.5; font-size: 0.7rem; letter-spacing: 3px; margin-top: 20px; }
+        /* Navigation to the Final Slider */
+        .next-step-btn {
+            margin-top: 40px;
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 77, 109, 0.1);
+            border: 1px solid var(--accent);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .next-step-btn:hover {
+            background: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
+        }
     </style>
 </head>
 <body>
 
     <div class="stars"></div>
 
-    <div class="header">
-        <h1>To My Everything...</h1>
-        <p>A few reasons why I'm so lucky ❤️</p>
+    <div class="container">
+        <h1>Our Story...</h1>
+        <p style="opacity: 0.8; letter-spacing: 1px;">Started Jan 22, 2025</p>
+        
+        <span class="infinity">∞</span>
+
+        <div class="timer-grid">
+            <div class="time-box"><span class="time-value" id="years">0</span><span class="time-label">Years</span></div>
+            <div class="time-box"><span class="time-value" id="months">0</span><span class="time-label">Months</span></div>
+            <div class="time-box"><span class="time-value" id="days">0</span><span class="time-label">Days</span></div>
+            <div class="time-box"><span class="time-value" id="hours">0</span><span class="time-label">Hours</span></div>
+            <div class="time-box"><span class="time-value" id="minutes">0</span><span class="time-label">Min</span></div>
+            <div class="time-box"><span class="time-value" id="seconds">0</span><span class="time-label">Sec</span></div>
+        </div>
+
+        <a href="love-meter.html" class="next-step-btn">The Final Secret ➔</a>
     </div>
 
-    <div class="scroller">
-        <div class="reason-card">
-            <span>✨</span>
-            <h2>Your Eyes</h2>
-            <p>"I could get lost in your eyes for a lifetime, and even then, I wouldn't want to be found. They hold a universe I never knew existed."</p>
-        </div>
+    <script>
+        // Use your specific start date
+        const startDate = new Date("January 22, 2025 00:00:00").getTime();
 
-        <div class="reason-card">
-            <span>🌹</span>            <h2>Your Smile</h2>
-            <p>"Your smile is the only light I need. It’s a masterpiece that turns my darkest days into a cinematic gallery of joy."</p>
-        </div>
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = now - startDate;
 
-        <div class="reason-card">
-            <span>💫</span>
-            <h2>Your Hair</h2>
-            <p>"Even the wind is jealous of how perfectly your hair falls. Every strand seems to carry a rhythm of its own."</p>
-        </div>
+            const start = new Date("January 22, 2025");
+            const current = new Date();
+            
+            let years = current.getFullYear() - start.getFullYear();
+            let months = current.getMonth() - start.getMonth();
+            let days = current.getDate() - start.getDate();
 
-        <div class="reason-card">
-            <span>🎶</span>
-            <h2>Your Laugh</h2>
-            <p>"If happiness had a sound, it would be your laugh. It’s the favorite melody my heart ever learned to play."</p>
-        </div>
+            if (days < 0) {
+                months -= 1;
+                days += new Date(current.getFullYear(), current.getMonth(), 0).getDate();
+            }
+            if (months < 0) {
+                years -= 1;
+                months += 12;
+            }
 
-        <div class="reason-card">
-            <span>🏠</span>
-            <h2>My Safe Haven</h2>
-            <p>"It’s how the world goes quiet when I’m with you. In a life full of noise, you are my absolute peace—the place where everything finally feels perfect."</p>
-        </div>
+            document.getElementById('years').innerText = years;
+            document.getElementById('months').innerText = months;
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }
 
-        <div class="reason-card">
-            <span>⌛</span>
-            <h2>Our Forever</h2>
-            <p>I've been counting every single second since the day we started.</p>
-            <a href="timer.html" class="portal-btn">Enter Our Eternity</a>
-        </div>
-    </div>
-
-    <div class="footer-hint">← SWIPE TO CONTINUE →</div>
-
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 </body>
 </html>

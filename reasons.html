@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reasons Why</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; background: #ff4d6d; font-family: 'Quicksand', sans-serif; color: white; overflow-x: hidden; }
+        .header { text-align: center; padding: 40px 20px; }
+        
+        .scroller {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 20px;
+            gap: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .scroller::-webkit-scrollbar { display: none; }
+
+        .reason-card {
+            min-width: 80vw;
+            height: 60vh;
+            background: white;
+            color: #ff4d6d;
+            border-radius: 30px;
+            scroll-snap-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .reason-card span { font-size: 50px; margin-bottom: 20px; }
+        .reason-card h2 { font-size: 1.5rem; }
+        .footer-hint { text-align: center; opacity: 0.8; font-size: 0.9rem; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Why it's always been you...</h1>
+        <p>Swipe through these ❤️</p>
+    </div>
+
+    <div class="scroller">
+        <div class="reason-card">
+            <span>✨</span>
+            <h2>Your Smile</h2>
+            <p>It literally makes my entire day better, no matter how much KCET prep I have to do.</p>
+        </div>
+        <div class="reason-card">
+            <span>🧠</span>
+            <h2>Your Mind</h2>
+            <p>I love how you see the world. You're the smartest person I know.</p>
+        </div>
+        <div class="reason-card">
+            <span>📸</span>
+            <h2>Our Memories</h2>
+            <p>Every photo we take is my new favorite. I can't wait to take a million more.</p>
+        </div>
+        <div class="reason-card">
+            <span>🏠</span>
+            <h2>You Feel Like Home</h2>
+            <p>No matter where we are, as long as I'm with you, I'm happy.</p>
+        </div>
+    </div>
+
+    <div class="footer-hint">← Swipe to see more →</div>
+
+</body>
+</html>

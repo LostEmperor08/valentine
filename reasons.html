@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reasons Why</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background: #ff4d6d; font-family: 'Quicksand', sans-serif; color: white; overflow-x: hidden; }
-        .header { text-align: center; padding: 40px 20px; }
+        body { margin: 0; background: #0a0a0a; font-family: 'Quicksand', sans-serif; color: white; overflow-x: hidden; }
+        
+        /* Cinematic Star Background */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            z-index: -1;
+        }
+
+        .header { text-align: center; padding: 40px 20px; animation: fadeIn 2s; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3rem; color: #ff4d6d; }
         
         .scroller {
             display: flex;
@@ -15,63 +25,106 @@
             scroll-snap-type: x mandatory;
             padding: 20px;
             gap: 20px;
-            -webkit-overflow-scrolling: touch;
+            height: 70vh;
+            align-items: center;
         }
         
         .scroller::-webkit-scrollbar { display: none; }
 
         .reason-card {
-            min-width: 80vw;
+            min-width: 85vw;
             height: 60vh;
-            background: white;
-            color: #ff4d6d;
-            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 40px;
             scroll-snap-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             text-align: center;
+            box-sizing: border-box;
         }
 
-        .reason-card span { font-size: 50px; margin-bottom: 20px; }
-        .reason-card h2 { font-size: 1.5rem; }
-        .footer-hint { text-align: center; opacity: 0.8; font-size: 0.9rem; margin-top: 20px; }
+        .reason-card span { font-size: 60px; margin-bottom: 20px; }
+        .reason-card h2 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; margin: 10px 0; color: #ff4d6d; }
+        .reason-card p { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; }
+
+        /* The Final Button */
+        .portal-btn {
+            background: #ff4d6d;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            box-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 77, 109, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 109, 0); }
+        }
+
+        .footer-hint { text-align: center; opacity: 0.5; font-size: 0.7rem; letter-spacing: 3px; margin-top: 20px; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
+    <div class="stars"></div>
+
     <div class="header">
-        <h1>Why it's always been you...</h1>
-        <p>Swipe through these ❤️</p>
+        <h1>To My Everything...</h1>
+        <p>A few reasons why I'm so lucky ❤️</p>
     </div>
 
     <div class="scroller">
         <div class="reason-card">
             <span>✨</span>
-            <h2>Your Smile</h2>
-            <p>It literally makes my entire day better, no matter how much KCET prep I have to do.</p>
+            <h2>Your Eyes</h2>
+            <p>"I could get lost in your eyes for a lifetime, and even then, I wouldn't want to be found. They hold a universe I never knew existed."</p>
         </div>
+
         <div class="reason-card">
-            <span>🧠</span>
-            <h2>Your Mind</h2>
-            <p>I love how you see the world. You're the smartest person I know.</p>
+            <span>🌹</span>            <h2>Your Smile</h2>
+            <p>"Your smile is the only light I need. It’s a masterpiece that turns my darkest days into a cinematic gallery of joy."</p>
         </div>
+
         <div class="reason-card">
-            <span>📸</span>
-            <h2>Our Memories</h2>
-            <p>Every photo we take is my new favorite. I can't wait to take a million more.</p>
+            <span>💫</span>
+            <h2>Your Hair</h2>
+            <p>"Even the wind is jealous of how perfectly your hair falls. Every strand seems to carry a rhythm of its own."</p>
         </div>
+
+        <div class="reason-card">
+            <span>🎶</span>
+            <h2>Your Laugh</h2>
+            <p>"If happiness had a sound, it would be your laugh. It’s the favorite melody my heart ever learned to play."</p>
+        </div>
+
         <div class="reason-card">
             <span>🏠</span>
-            <h2>You Feel Like Home</h2>
-            <p>No matter where we are, as long as I'm with you, I'm happy.</p>
+            <h2>My Safe Haven</h2>
+            <p>"It’s how the world goes quiet when I’m with you. In a life full of noise, you are my absolute peace—the place where everything finally feels perfect."</p>
+        </div>
+
+        <div class="reason-card">
+            <span>⌛</span>
+            <h2>Our Forever</h2>
+            <p>I've been counting every single second since the day we started.</p>
+            <a href="timer.html" class="portal-btn">Enter Our Eternity</a>
         </div>
     </div>
 
-    <div class="footer-hint">← Swipe to see more →</div>
+    <div class="footer-hint">← SWIPE TO CONTINUE →</div>
 
 </body>
 </html>

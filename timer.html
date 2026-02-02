@@ -6,89 +6,40 @@
     <title>Our Forever</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            background: #0a0a0a; /* Deep Cinematic Black */
-            color: white;
-            font-family: 'Quicksand', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-            text-align: center;
+        body { margin: 0; background: #0a0a0a; color: white; font-family: 'Quicksand', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; }
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%); z-index: -1; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: #ff4d6d; }
+        .infinity { font-size: 70px; color: #ff4d6d; animation: glow 3s infinite alternate; }
+        @keyframes glow { from { text-shadow: 0 0 10px #ff4d6d; } to { text-shadow: 0 0 30px #ff758f; } }
+        .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+        .time-box { background: rgba(255, 255, 255, 0.08); padding: 15px; border-radius: 20px; border: 1px solid rgba(255, 77, 109, 0.2); }
+        .time-value { font-size: 1.5rem; color: #ff758f; font-weight: 600; }
+        .time-label { font-size: 0.6rem; text-transform: uppercase; opacity: 0.6; }
+        
+        /* The Missing Transition Button */
+        .next-btn { 
+            margin-top: 30px; 
+            display: inline-block; 
+            color: white; 
+            text-decoration: none; 
+            border: 1px solid #ff4d6d; 
+            padding: 12px 25px; 
+            border-radius: 50px; 
+            transition: 0.3s;
+            background: rgba(255, 77, 109, 0.1);
         }
-
-        .container {
-            padding: 20px;
-            z-index: 10;
-        }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.5rem;
-            color: #ff4d6d;
-            margin-bottom: 10px;
-        }
-
-        .infinity {
-            font-size: 80px;
-            color: #ff4d6d;
-            margin: 10px 0;
-            display: block;
-            animation: glow 2s infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff4d6d; }
-            to { text-shadow: 0 0 20px #ff758f, 0 0 40px #ff758f; transform: scale(1.1); }
-        }
-
-        .timer-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .time-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 77, 109, 0.3);
-        }
-
-        .time-value {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #ff758f;
-            display: block;
-        }
-
-        .time-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.7;
-        }
-
-        .footer-text {
-            margin-top: 40px;
-            font-style: italic;
-            opacity: 0.6;
-            font-size: 0.9rem;
+        .next-btn:hover {
+            background: #ff4d6d;
+            box-shadow: 0 0 15px #ff4d6d;
         }
     </style>
 </head>
 <body>
-
+    <div class="stars"></div>
     <div class="container">
-        <h1>Our Journey Started...</h1>
-        <p>January 22, 2025</p>
-        
+        <h1>Our Story...</h1>
         <span class="infinity">∞</span>
-
-        <div class="timer-grid">
+        <div class="timer-grid" id="timer">
             <div class="time-box"><span class="time-value" id="years">0</span><span class="time-label">Years</span></div>
             <div class="time-box"><span class="time-value" id="months">0</span><span class="time-label">Months</span></div>
             <div class="time-box"><span class="time-value" id="days">0</span><span class="time-label">Days</span></div>
@@ -96,51 +47,23 @@
             <div class="time-box"><span class="time-value" id="minutes">0</span><span class="time-label">Min</span></div>
             <div class="time-box"><span class="time-value" id="seconds">0</span><span class="time-label">Sec</span></div>
         </div>
-
-        <p class="footer-text">Counting every second until the end of time.</p>
+        
+        <a href="love-meter.html" class="next-btn">The Final Secret ➔</a>
     </div>
-
     <script>
-        const startDate = new Date("January 22, 2025 00:00:00").getTime();
-
-        function updateTimer() {
+        // Counting since your anniversary: January 22, 2025
+        const start = new Date("January 22, 2025 00:00:00").getTime();
+        function update() {
             const now = new Date().getTime();
-            const diff = now - startDate;
-
-            // Calculations for total time
-            const totalSeconds = Math.floor(diff / 1000);
-            const totalMinutes = Math.floor(totalSeconds / 60);
-            const totalHours = Math.floor(totalMinutes / 60);
-            const totalDays = Math.floor(totalHours / 24);
-
-            // Break down into years/months/days
-            const start = new Date("January 22, 2025");
-            const current = new Date();
-            
-            let years = current.getFullYear() - start.getFullYear();
-            let months = current.getMonth() - start.getMonth();
-            let days = current.getDate() - start.getDate();
-
-            if (days < 0) {
-                months -= 1;
-                days += new Date(current.getFullYear(), current.getMonth(), 0).getDate();
-            }
-            if (months < 0) {
-                years -= 1;
-                months += 12;
-            }
-
-            // Update UI
-            document.getElementById('years').innerText = years;
-            document.getElementById('months').innerText = months;
-            document.getElementById('days').innerText = days;
-            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            const diff = now - start;
+            document.getElementById('years').innerText = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            document.getElementById('months').innerText = Math.floor((diff / (1000 * 60 * 60 * 24 * 30.44)) % 12);
+            document.getElementById('days').innerText = Math.floor((diff / (1000 * 60 * 60 * 24)) % 30.44);
+            document.getElementById('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            document.getElementById('minutes').innerText = Math.floor((diff / (1000 * 60)) % 60);
+            document.getElementById('seconds').innerText = Math.floor((diff / 1000) % 60);
         }
-
-        setInterval(updateTimer, 1000);
-        updateTimer();
+        setInterval(update, 1000); update();
     </script>
 </body>
 </html>

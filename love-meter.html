@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Final Question</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff0f3;
+            font-family: 'Quicksand', sans-serif;
+            transition: background-color 0.5s ease;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            width: 85%;
+            max-width: 400px;
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 2.5rem; }
+        
+        .emoji { font-size: 80px; margin: 20px 0; display: block; transition: transform 0.3s ease; }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+            margin: 20px 0;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 15px;
+            background: #ffb3c1;
+            border-radius: 10px;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background: #ff4d6d;
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+        }
+
+        .percent { font-size: 2rem; font-weight: 600; color: #ff4d6d; margin-top: 10px; }
+        
+        #message { font-style: italic; color: #6c757d; margin-top: 20px; min-height: 24px; }
+
+        #teleBtn {
+            display: none;
+            margin-top: 25px;
+            background-color: #0088cc;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>How much do you love me?</h1>
+        <span class="emoji" id="emoji">🤔</span>
+        <input type="range" id="loveSlider" min="0" max="100" value="0">
+        <div class="percent" id="percentText">0%</div>
+        <div id="message">Slide to tell me...</div>
+        
+        <a href="https://t.me/lostemperor_08" id="teleBtn">Tell Me in Person ❤️</a>
+    </div>
+
+    <script>
+        const slider = document.getElementById('loveSlider');
+        const percentText = document.getElementById('percentText');
+        const emoji = document.getElementById('emoji');
+        const message = document.getElementById('message');
+        const teleBtn = document.getElementById('teleBtn');
+
+        const reactions = [
+            { threshold: 0, emoji: '🤔', text: "Are you sure? 🤨" },
+            { threshold: 25, emoji: '😊', text: "That's a good start! ❤️" },
+            { threshold: 50, emoji: '🥰', text: "Getting warmer... 😘" },
+            { threshold: 75, emoji: '💖', text: "I can feel the love! 🌟" },
+            { threshold: 100, emoji: '👑', text: "Infinity and beyond! 💍" }
+        ];
+
+        slider.addEventListener('input', () => {
+            const val = slider.value;
+            percentText.innerText = val + "%";
+            
+            const intensity = 255 - (val * 0.5); 
+            document.body.style.backgroundColor = `rgb(255, ${intensity}, ${intensity + 5})`;
+
+            emoji.style.transform = `scale(${1 + val/100})`;
+
+            const reaction = reactions.filter(r => val >= r.threshold).pop();
+            emoji.innerText = reaction.emoji;
+            message.innerText = reaction.text;
+
+            if (val == 100) {
+                teleBtn.style.display = 'inline-block';
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#ff4d6d', '#ffb3c1', '#0088cc']
+                });
+            } else {
+                teleBtn.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
